@@ -19,7 +19,21 @@
           :color="contextConfig.invertedColor ? $themes.gray : 'white'"
         />
 
-        <div class="display-3">PORTAL</div>
+        <router-link
+          class="app-navbar__logo mr-3 d-flex"
+          to="/"
+        >
+          <img src="/img/digemig-logo.png" style="min-width: 50px; min-height: 50px;">
+        </router-link>
+
+        <div class="d-flex">
+          <div class="px-3" style="border-right: 1px solid;">MODIPI</div>
+          <div class="px-3" style="border-right: 1px solid;">REPORTES</div>
+          <div class="px-3" style="border-right: 1px solid;">CREACION USUARIOS</div>
+          <div class="px-3" style="border-right: 1px solid;">ADMINISTRAR</div>
+          <div class="px-3" style="border-right: 1px solid;">CAMBIO DE CONTRASENA</div>
+        </div>
+
       </div>
       <app-navbar-actions
         class="app-navbar__actions md5 lg4"
@@ -197,7 +211,7 @@ $nav-border-side-width: 3.1875rem;
   }
 
   &__logo {
-    width: 9.5rem;
+    width: auto;
     height: auto;
     align-items: center;
 

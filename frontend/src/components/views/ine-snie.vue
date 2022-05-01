@@ -1,82 +1,18 @@
 <template>
   <div>
-    <div class="flex xs11 lg12" style="padding-left: 10px; margin-left: auto; margin-right: auto; margin-bottom: 20px; width: 40%;">
-      <va-card class="fill-height" style="overflow-x: auto;">
-        <va-notification style="margin-bottom: 20px;">
-            {{ $t('GESTION(FLUJO)') }}
-        </va-notification>
-        <va-select
-          :label="$t('SELECT')"
-          v-model="gestion"
-          :options="allowedCitiesList"
-          key-by="text"
-        />
-        <va-input
-          :value="searchGenContent01"
-          :placeholder="$t('N* DOCUMENTO O SERIE')"
-          @input="searchGen01"
-          removable
-        >
-          <va-icon name="fa fa-search" slot="prepend" />
-        </va-input>
-        <va-input
-          :value="searchGenContent02"
-          :placeholder="$t('NOMBRES')"
-          @input="searchGen02"
-          removable
-        >
-          <va-icon name="fa fa-search" slot="prepend" />
-        </va-input>
-        <va-input
-          :value="searchGenContent03"
-          :placeholder="$t('APELLIDOS')"
-          @input="searchGen03"
-          removable
-        >
-          <va-icon name="fa fa-search" slot="prepend" />
-        </va-input>
-        <va-input
-          :value="searchGenContent04"
-          :placeholder="$t('FECHA NACIMENTO DD/MM/YYYY')"
-          @input="searchGen04"
-          removable
-        >
-          <va-icon name="fa fa-search" slot="prepend" />
-        </va-input>
-        <div class="mb-4">
-          <a href="/default" class="link mr-4" @click.prevent style="color: #76c566;">
-            Servicio Ministerio Publico ACTIVO
-          </a>
-        </div>
-        <div class="flex xs12 mt-3">
-          <div class="row align--center">
-            <div class="flex xs6 md6" style="text-align: center;">
-              <va-button icon="entypo entypo-search" @click="genSearch()"> BUSCAR</va-button>
-            </div>
-            <div class="flex xs6 md6" style="text-align: center;">
-              <va-button icon="fa fa-refresh" @click="genClear()"> LIMPIAR</va-button>
-            </div>
-          </div>
-        </div>
-      </va-card>
-    </div>
     <div class="flex xs11 lg12" style="padding-left: 10px;">
       <va-card class="fill-height" style="overflow-x: auto;">
-        <div class="row mt-2">
-          <div class="flex xs12 md12 lg3" style="text-align: start;">
+        <div class="row mt-2 mx-5 px-5">
+          <div class="flex xs12 md12 lg3 pl-4" style="text-align: start;">
             <va-button style="background-color: #105544;">PASAPORTE</va-button>
-          </div>
-          <div class="flex xs12 md12 lg9" style="text-align: end;">
-            <va-button icon="entypo entypo-user" @click="addModal = true"> AÑADIR NUEVO</va-button>
-            <va-button icon="fa fa-download" @click="exportExcel()"> EXPORT EXCEL</va-button>
-            <va-button icon="fa fa-download" @click="exportPDF()"> EXPORT PDF</va-button>
           </div>
         </div>
         <div class="flex xs12 mt-3">
           <div class="row align--center">
+            <div class="flex xs12 md1"></div>
             <div class="flex xs12 md2">
               <va-select
-                :label="$t('TIPO BUSQUEDA')"
+                :label="$t('DEPARTAMENTO')"
                 v-model="searchContent01"
                 multiple
                 :options="options01"
@@ -85,7 +21,7 @@
             </div>
             <div class="flex xs12 md2">
               <va-select
-                :label="$t('NOMBRE Y APELLIDOS')"
+                :label="$t('MUNICIPIO')"
                 v-model="searchContent02"
                 multiple
                 :options="options02"
@@ -94,7 +30,7 @@
             </div>
             <div class="flex xs12 md2">
               <va-select
-                :label="$t('FECHA NACIMIENTO')"
+                :label="$t('GRUPO ETAREO')"
                 v-model="searchContent03"
                 multiple
                 :options="options03"
@@ -103,7 +39,7 @@
             </div>
             <div class="flex xs12 md2">
               <va-select
-                :label="$t('NÚMERO DOCUMENTO')"
+                :label="$t('EOAD DESDE')"
                 v-model="searchContent04"
                 multiple
                 :options="options04"
@@ -112,140 +48,271 @@
             </div>
             <div class="flex xs12 md2">
               <va-select
-                :label="$t('TIPO DOCUMENTO')"
+                :label="$t('EOAD HASTA')"
                 v-model="searchContent05"
                 multiple
                 :options="options05"
                 @input="search05"
               />
             </div>
+            <div class="flex xs12 md1"></div>
+          </div>
+          <div class="row align--center">
+            <div class="flex xs12 md1"></div>
             <div class="flex xs12 md2">
               <va-select
-                :label="$t('NACIONALIDAD')"
-                v-model="searchContent06"
+                :label="$t('GENERO')"
+                v-model="searchContent01"
                 multiple
-                :options="options06"
-                @input="search06"
+                :options="options01"
+                @input="search01"
               />
             </div>
             <div class="flex xs12 md2">
               <va-select
-                :label="$t('NÚMERO DE SERIE')"
-                v-model="searchContent07"
+                :label="$t('RIESGO')"
+                v-model="searchContent02"
                 multiple
-                :options="options07"
-                @input="search07"
+                :options="options02"
+                @input="search02"
               />
             </div>
             <div class="flex xs12 md2">
               <va-select
-                :label="$t('FECHA EMISIÓN')"
-                v-model="searchContent08"
+                :label="$t('PERIODO TEIMPO')"
+                v-model="searchContent03"
                 multiple
-                :options="options08"
-                @input="search08"
+                :options="options03"
+                @input="search03"
               />
             </div>
             <div class="flex xs12 md2">
               <va-select
-                :label="$t('FECHA VENCIMIENTO')"
-                v-model="searchContent09"
+                :label="$t('FECHA DESDE')"
+                v-model="searchContent04"
                 multiple
-                :options="options09"
-                @input="search09"
+                :options="options04"
+                @input="search04"
               />
             </div>
             <div class="flex xs12 md2">
               <va-select
-                :label="$t('LUGAR EMISIÓN')"
-                v-model="searchContent10"
+                :label="$t('FECHA HASTA')"
+                v-model="searchContent05"
                 multiple
-                :options="options10"
-                @input="search10"
+                :options="options05"
+                @input="search05"
+              />
+            </div>
+            <div class="flex xs12 md1"></div>
+          </div>
+          <div class="row align--center">
+            <div class="flex xs12 md1"></div>
+            <div class="flex xs12 md2">
+              <va-select
+                class="select-margin"
+                :label="$t('COMPONENTE')"
+                v-model="searchContent01"
+                multiple
+                :options="options01"
+                @input="search01"
+              />
+            </div>
+            <div class="flex xs12 md2">
+              <va-select
+                :label="$t('DMIENSION')"
+                v-model="searchContent02"
+                multiple
+                :options="options02"
+                @input="search02"
+              />
+            </div>
+            <div class="flex xs12 md6">
+              <va-select
+                :label="$t('SUB-DMIENSION')"
+                v-model="searchContent03"
+                multiple
+                :options="options03"
+                @input="search03"
+              />
+            </div>
+            <div class="flex xs12 md1"></div>
+          </div>
+          <div class="row align--center">
+            <div class="flex xs12 md1"></div>
+            <div class="flex xs12 md8">
+              <va-select
+                :label="$t('INDICADOR')"
+                v-model="searchContent01"
+                multiple
+                :options="options01"
+                @input="search01"
               />
             </div>
             <div class="flex xs12 md2">
               <va-select
                 :label="$t('ESTADO')"
-                v-model="searchContent11"
+                v-model="searchContent05"
                 multiple
-                :options="options11"
-                @input="search11"
+                :options="options05"
+                @input="search05"
+              />
+            </div>
+            <div class="flex xs12 md1"></div>
+          </div>
+          <div class="row align--center">
+            <div class="flex xs12 md1"></div>
+            <div class="flex xs12 md2">
+              <va-select
+                :label="$t('Rural_Urbano')"
+                v-model="searchContent01"
+                multiple
+                :options="options01"
+                @input="search01"
               />
             </div>
             <div class="flex xs12 md2">
               <va-select
-                :label="$t('OBSERVACIÓN')"
-                v-model="searchContent12"
+                :label="$t('Es migrante')"
+                v-model="searchContent02"
                 multiple
-                :options="options12"
-                @input="search12"
+                :options="options02"
+                @input="search02"
               />
             </div>
+            <div class="flex xs12 md2">
+              <va-select
+                :label="$t('Discapacidad')"
+                v-model="searchContent03"
+                multiple
+                :options="options03"
+                @input="search03"
+              />
+            </div>
+            <div class="flex xs12 md2">
+              <va-select
+                :label="$t('Motivo de Trabajo')"
+                v-model="searchContent04"
+                multiple
+                :options="options04"
+                @input="search04"
+              />
+            </div>
+            <div class="flex xs12 md2">
+              <va-select
+                :label="$t('Aportes AFP')"
+                v-model="searchContent05"
+                multiple
+                :options="options05"
+                @input="search05"
+              />
+            </div>
+            <div class="flex xs12 md1"></div>
           </div>
+          <div class="row align--center">
+            <div class="flex xs12 md1"></div>
+            <div class="flex xs12 md2">
+              <va-select
+                :label="$t('Cert Nacimiernto')"
+                v-model="searchContent01"
+                multiple
+                :options="options01"
+                @input="search01"
+              />
+            </div>
+            <div class="flex xs12 md2">
+              <va-select
+                :label="$t('Cedula Identid')"
+                v-model="searchContent02"
+                multiple
+                :options="options02"
+                @input="search02"
+              />
+            </div>
+            <div class="flex xs12 md2">
+              <va-select
+                :label="$t('Poblacion-etnia')"
+                v-model="searchContent03"
+                multiple
+                :options="options03"
+                @input="search03"
+              />
+            </div>
+            <div class="flex xs12 md2">
+              <va-select
+                :label="$t('Seguro Medico')"
+                v-model="searchContent04"
+                multiple
+                :options="options04"
+                @input="search04"
+              />
+            </div>
+            <div class="flex xs12 md2">
+              <va-select
+                :label="$t('Derecho Vacacio')"
+                v-model="searchContent05"
+                multiple
+                :options="options05"
+                @input="search05"
+              />
+            </div>
+            <div class="flex xs12 md1"></div>
+          </div>
+          <div class="row mx-5 px-5">
+            <div class="flex xs12 md12 lg12 mt-3 pr-4" style="text-align: end;">
+              <va-button icon="fa fa-refresh" @click="refresh()" style="background-color: #105544;"> RUN REPORT</va-button>
+              <va-button icon="fa fa-download" @click="exportExcel()"> EXCEL</va-button>
+              <va-button icon="fa fa-download" @click="exportPDF()"> PDF</va-button>
+            </div>
+          </div>
+          <div id="chart-canvas" class="row mb-5">
+            <div class="flex md1 xs12"></div>
+            <div class="flex md7 xs12">
+              <va-card
+                class="chart-widget"
+                :title="$t('NÚMERO DE VIVENDAS POR TIPO DE VIVIENDA, SEGÚN  DEPARTAMENTO, PROVINCIA Y MUNICIPIO, CNPV 2012')"
+              >
+                <va-chart :data="verticalBarChartData" type="vertical-bar"/>
+              </va-card>
+            </div>
+            <div class="flex md3 xs12 d-flex align-items--center">
+              <va-card
+                class="chart-widget"
+                :title="$t('')"
+                style="display: flex; align-items: center;"
+              >
+                <va-chart :data="pieChartData" :options="pieOptions" type="pie"/>
+              </va-card>
+            </div>
+            <div class="flex md1 xs12"></div>
+          </div>
+
+          <div class="table-title m-0 p-0">RESUMEN</div>
           <va-data-table
             id="tableheader"
             ref="article"
             :fields="fields"
-            :data="searchedProducts"
+            :data="tableData"
             :loading="loading"
             @row-clicked="showUser"
             clickable
             api-mode
             thead-class="greenColor"
           >
-            <template slot="Tipo Busqueda" slot-scope="props">
-              {{ props.rowData.tipo_bus }}
+            <template slot="DEPARTAMENTO" slot-scope="props">
+              {{ props.rowData.dapartamento }}
             </template>
-
-            <template slot="Nombres Y Aplellidos" slot-scope="props">
-              {{ props.rowData.nombres_apellidos }}
+            <template slot="Total" slot-scope="props">
+              <div style="text-align: center;">{{ props.rowData.total }}</div>
             </template>
-
-            <template slot="Fecha De Nacimiento" slot-scope="props">
-              {{ isDate(props.rowData.fecha_nac) }}
+            <template slot="Vivienda Particular" slot-scope="props">
+              <div style="text-align: center;">{{ props.rowData.particular }}</div>
             </template>
-
-            <template slot="Numero De Documento" slot-scope="props">
-              {{ props.rowData.numero_doc }}
+            <template slot="Vivienda Colectiva" slot-scope="props">
+              <div style="text-align: center;">{{ props.rowData.colectiva }}</div>
             </template>
-
-            <template slot="Tipo Documento" slot-scope="props">
-              {{ props.rowData.tipo_doc }}
-            </template>
-
-            <template slot="Pais Nacionalidad" slot-scope="props">
-              {{ props.rowData.pais_nac }}
-            </template>
-
-            <template slot="Numero De Serie" slot-scope="props">
-              {{ props.rowData.serie }}
-            </template>
-
-            <template slot="Fecha Emision" slot-scope="props">
-              {{ isDateTime(props.rowData.fecha_emi) }}
-            </template>
-
-            <template slot="Fecha Vencimiento" slot-scope="props">
-              {{ isDateTime(props.rowData.fecha_ven) }}
-            </template>
-
-            <template slot="Lugar Emision" slot-scope="props">
-              {{ props.rowData.lugar_emi }}
-            </template>
-
-            <template slot="Estado" slot-scope="props">
-              {{ props.rowData.estado }}
-            </template>
-
-            <template slot="Observacion" slot-scope="props">
-              {{ props.rowData.observacion }}
-            </template>
-
-            <template slot="actions" slot-scope="props">
-              <va-button outline small color="danger" icon="ion-md-close ion" class="ma-0" @click="remove(props.rowData)">
-                {{ $t('DELETE') }}
-              </va-button>
+            <template slot="Transeuntes" slot-scope="props">
+              <div style="text-align: center;">{{ props.rowData.transeuntes }}</div>
             </template>
           </va-data-table>
         </div>
@@ -487,13 +554,91 @@ import moment from 'moment';
 import axios from "axios";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import html2canvas from "html2canvas";
 import { jsontoexcel } from "vue-table-to-excel";
+import * as XLSX from 'xlsx/xlsx.mjs';
+const ExcelJS = require('exceljs');
 import config from "@/config";
+import VaChart from '../statistics/charts/va-charts/VaChart';
+import { getPieChartData } from '../../data/charts/PieChartData';
+import { getVerticalBarChartData } from '../../data/charts/VerticalBarChartData';
 axios.defaults.baseURL = config.API_URL;
 
 export default {
   data() {
     return {
+
+      pieChartData: getPieChartData(this.$themes),
+      verticalBarChartData: getVerticalBarChartData(this.$themes),
+      pieOptions: {
+        responsive: true, 
+        maintainAspectRatio: false,
+      },
+
+      tableData: [{
+        dapartamento: "Chuquisaca",
+        total: 179578,
+        particular: 176450,
+        colectiva: 2277,
+        transeuntes: 851
+      },
+      {
+        dapartamento: "La Paz",
+        total: 940948,
+        particular: 930457,
+        colectiva: 7197,
+        transeuntes: 3294
+      },
+      {
+        dapartamento: "Cochabamba",
+        total: 179578,
+        particular: 176450,
+        colectiva: 2277,
+        transeuntes: 851
+      },
+      {
+        dapartamento: "Oruro",
+        total: 179578,
+        particular: 176450,
+        colectiva: 2277,
+        transeuntes: 851
+      },
+      {
+        dapartamento: "Potosí",
+        total: 179578,
+        particular: 176450,
+        colectiva: 2277,
+        transeuntes: 851
+      },
+      {
+        dapartamento: "Tarija",
+        total: 179578,
+        particular: 176450,
+        colectiva: 2277,
+        transeuntes: 851
+      },
+      {
+        dapartamento: "Santa Cruz",
+        total: 179578,
+        particular: 176450,
+        colectiva: 2277,
+        transeuntes: 851
+      },
+      {
+        dapartamento: "Beni",
+        total: 179578,
+        particular: 176450,
+        colectiva: 2277,
+        transeuntes: 851
+      },
+      {
+        dapartamento: "Pando",
+        total: 179578,
+        particular: 176450,
+        colectiva: 2277,
+        transeuntes: 851
+      }],
+
       addModal: false,
       verifyModal: false,
       invalidModal: false,
@@ -568,14 +713,11 @@ export default {
 
       json: {
         head: [
-                "ID", "PAR TRAMITE", "NOMBRES Y APELLIDOS","FECHA DE NACIMIENTO",
-                "NÚMERO DE DOCUMENTO", "TIPO DOCUMENTO", "PAÍS NACIONALIDAD",
-                "NÚMERO DE SERIE", "FECHA EMISIÓN", "FECHA VENCIMIENTO",
-                "LUGAR EMISIÓN", "ESTADO", "OBSERVACIÓN",
-                "CREATEDAT", "FECHA REG"
+                "DEPARTAMENTO", "TOTAL", "VIVIENDA PARTICULAR", "VIVIENDA COLECTIVA", "TRANSEUNTES"
               ],
         fileName: "ReportData.xls"
       },
+      doc: new jsPDF('p', 'mm', 'b1'),
 
       searchDateTime: ''
     };
@@ -584,69 +726,30 @@ export default {
     fields() {
       return [
         {
-          name: "__slot:Tipo Busqueda",
-          title: "TIPO BUSQUEDA",
-          // width: "15%",
+          name: "__slot:DEPARTAMENTO",
+          title: "DEPARTAMENTO",
+          width: "40%",
         },
         {
-          name: "__slot:Nombres Y Aplellidos",
-          title: "NOMBRES Y APELLIDOS",
-          // width: "15%",
+          name: "__slot:Total",
+          title: "Total",
+          width: "15%",
         },
         {
-          name: "__slot:Fecha De Nacimiento",
-          title: "FECHA DE NACIMIENTO",
-          // width: "15%",
+          name: "__slot:Vivienda Particular",
+          title: "Vivienda Particular",
+          width: "15%",
         },
         {
-          name: "__slot:Numero De Documento",
-          title: "NÚMERO DE DOCUMENTO",
-          // width: "15%",
+          name: "__slot:Vivienda Colectiva",
+          title: "Vivienda Colectiva",
+          width: "15%",
         },
         {
-          name: "__slot:Tipo Documento",
-          title: "TIPO DOCUMENTO",
-          // width: "15%",
+          name: "__slot:Transeuntes",
+          title: "Transeuntes",
+          width: "15%",
         },
-        {
-          name: "__slot:Pais Nacionalidad",
-          title: "PAÍS NACIONALIDAD",
-          // width: "15%",
-        },
-        {
-          name: "__slot:Numero De Serie",
-          title: "NÚMERO DE SERIE",
-          // width: "15%",
-        },
-        {
-          name: "__slot:Fecha Emision",
-          title: "FECHA EMISIÓN",
-          // width: "15%",
-        },
-        {
-          name: "__slot:Fecha Vencimiento",
-          title: "FECHA VENCIMIENTO",
-          // width: "15%",
-        },
-        {
-          name: "__slot:Lugar Emision",
-          title: "LUGAR EMISIÓN",
-          // width: "15%",
-        },
-        {
-          name: "__slot:Estado",
-          title: "ESTADO",
-          // width: "15%",
-        },
-        {
-          name: "__slot:Observacion",
-          title: "OBSERVACIÓN",
-          // width: "15%",
-        },
-        {
-          name: "__slot:actions",
-          title: "ACTIONS",
-        }
       ];
     },
   },
@@ -890,52 +993,54 @@ export default {
           this.getData();
         })
     },
+    refresh() {
+      this.tableData = [];
+      this.pieChartData.datasets.map(item => item.data = [0, 0, 0, 0]);
+      console.log(this.pieChartData.datasets);
+    },
     exportExcel() {
       console.log(this.json);
       const { head, fileName } = this.json;
-      const dataSource = this.searchedProducts;
+      const dataSource = this.tableData;
       jsontoexcel.getXlsx(dataSource, head, fileName);
     },
     exportPDF() {
+      let canvasChart = document.getElementById("chart-canvas");
       var source =  this.$refs["article"];
-        let rows = [];
-        let columnHeader = ['ID', 'PAR TRAMITE', 'NOMBRES Y APELLIDOS', 'FECHA DE NACIMIENTO', 'NUMERO DE DOCUMENTO', 'TIPO DOCUMENTO', 'PAIS NACIONALIDAD', 'NUMERO DE SERIE', 'FECHA EMISION', 'FECHA VENCIMIENTO', 'LUGAR EMISION', 'ESTADO', 'OBSERVACION', 'CREATEDAT', 'FECHA REG'];
-        let pdfName = 'Schedule';
-        source.data.forEach(element => {
-            var temp = [
-                element.id_tramite,
-                element.tipo_bus,
-                element.nombres_apellidos,
-                this.isDate(element.fecha_nac),
-                element.numero_doc,
-                element.tipo_doc,
-                element.pais_nac,
-                element.serie,
-                this.isDateTime(element.fecha_emi),
-                this.isDateTime(element.fecha_ven),
-                element.lugar_emi,
-                element.estado,
-                element.observacion,
-                this.isDateTime(element.createdAt),
-                this.isDateTime(element.fecha_Reg),
-            ];
-            rows.push(temp);
-        });
-        rows.push(["Total Count : " + rows.length.toString(), "", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "" ]);
-        var doc = new jsPDF('p', 'mm', 'b1');
-        var fullwidth = doc.internal.pageSize.width;
-        var fullheight = doc.internal.pageSize.height;
-        doc.addImage(require('../../assets/pdf/03.png'), 'PNG', 40, 10, 600, 60, 'img01');
-        doc.setFontSize(40);
-        doc.text("REPORTE DE CONSULTAS DE FLUJO", fullwidth / 2 - 120, 50 );
-        doc.setFontSize(20);
-        doc.text("Usuario: " + localStorage.uid.toUpperCase(), 120, 90 );
-        doc.text("Cantidad total de registros: " + (rows.length - 1).toString(), 120, 100 );
-        doc.text("Cantidad registros filtrados: " + this.products.length.toString(), 120, 110 );
-        doc.text("Fecha y hora de busqueda : " + this.searchDateTime, 420, 90 );
-        doc.text("Fecha y hora de impresion : " + moment().format("DD/MM/YYYY HH:mm:ss").toString(), 420, 100 );
-        doc.autoTable(columnHeader, rows, { startY: 120, styles: {fontSize: 11} });
+      let rows = [];
+      let columnHeader = ['DEPARTAMENTO', 'TOTAL', 'VIVIENDA PARTICULAR', 'VIVIENDA COLECTIVA', 'TRANSEUNTES'];
+      let pdfName = 'Schedule';
+      source.data.forEach(element => {
+          var temp = [
+              element.dapartamento,
+              element.total,
+              element.particular,
+              element.colectiva,
+              element.transeuntes,
+          ];
+          rows.push(temp);
+      });
+      rows.push(["Total Count : " + rows.length.toString(), "", "", "", ""]);
+      var doc = new jsPDF('p', 'mm', 'b1');
+      var fullwidth = doc.internal.pageSize.width;
+      var fullheight = doc.internal.pageSize.height;
+      doc.addImage(require('../../assets/pdf/03.png'), 'PNG', 40, 10, 600, 60, 'img01');
+      doc.setFontSize(40);
+      doc.text("NÚMERO DE VIVENDAS POR TIPO DE VIVIENDA, SEGÚN", fullwidth / 2 - 200, 40 );
+      doc.text("DEPARTAMENTO, PROVINCIA Y MUNICIPIO, CNPV 2012", fullwidth / 2 - 194, 60 );
+      doc.setFontSize(20);
+      doc.text("Usuario: " + localStorage.uid.toUpperCase(), 120, 90 );
+      doc.text("Cantidad total de registros: " + (rows.length - 1).toString(), 120, 100 );
+      doc.text("Cantidad registros filtrados: " + this.products.length.toString(), 120, 110 );
+      doc.text("Fecha y hora de busqueda : " + this.searchDateTime, 420, 90 );
+      doc.text("Fecha y hora de impresion : " + moment().format("DD/MM/YYYY HH:mm:ss").toString(), 420, 100 );
+      doc.autoTable(columnHeader, rows, { startY: 330, styles: {fontSize: 16} });
+      
+      html2canvas(canvasChart).then((canvas) => {
+        var imageData = canvas.toDataURL("image/png", 1.0);
+        doc.addImage(imageData, "JPEG", 25, 120, 650, 200, 'img02');
         doc.save(pdfName + '.pdf');
+      });
     },
 
     isDate(data) {
@@ -1096,17 +1201,39 @@ export default {
 </script>
 
 <style lang="scss">
+
+.chart-widget {
+  .va-card__body {
+    height: 450px;
+  }
+}
+
+.table-title {
+  width: 100%;
+  height: 60px;
+  background-color: #884ee1;
+  color: lightgrey;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: cener;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 2px solid #3e1084;
+  border-bottom: 2px solid #3e1084;
+}
+
 .user-list {
   height: 85vh;
 }
 
 #tableheader table thead tr th {
-  background: #105544;
-  color: white;
+  background: lightgrey;
+  color: #884ee1;
   height: 50px;
   padding-top: 20px;
-  // font-size: 12px;
-  // text-align: center;
+  font-size: 12px;
+  text-align: center;
   // display: flex;
   // align-items: center;
 }

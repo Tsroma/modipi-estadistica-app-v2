@@ -9,12 +9,10 @@
       "id":false,
       "freezeTableName": true,
       "timestamps": false,
-"logging": true,   
-"underscored": true,
-"operatorsAliases": false 
-
+      "logging": true,   
+      "underscored": true,
+      "operatorsAliases": false 
     }
-     
   },
   "test": {
     "username": "postgres",

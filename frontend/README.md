@@ -10,7 +10,7 @@
   English | <a href="./README.zh-CN.md"> 简体中文 </a> | <a href="./README.ja-JP.md"> 日本語 </a>
 </p>
 
-<h1 align="center"> Vuestic Admin </h1>
+<h1 align="center"> DIGEMIG </h1>
 
 <p align="center">
   Free and beautiful Vue.js admin template with 44+ custom UI components.</br>
@@ -51,7 +51,7 @@ First of all, make sure you have all prerequisites installed:
 - [Node.js](https://nodejs.org/en/) (>=8.9)
 - [npm](https://www.npmjs.com/get-npm) version 3+ (or [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) version 1.16+)  and [Git](https://git-scm.com/).
 
-After checking the prerequisites, follow these simple steps to install and use Vuestic Admin:
+After checking the prerequisites, follow these simple steps to install and use DIGEMIG:
 
 ```
 # clone the repo

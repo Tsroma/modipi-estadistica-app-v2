@@ -1,13 +1,15 @@
 <template>
   <div class="app-navbar-actions">
     
-    <va-icon
-      name="ion-md-contact"
-      style="font-size: 25px; display: flex; margin-right: 20px;"
-      class="settings-dropdown__icon"
-      slot="anchor"
-      :color="contextConfig.invertedColor ? $themes.gray : 'white'"
-    />
+    <a class="d-flex" href="/admin/my-account">
+      <va-icon
+        name="ion-md-contact"
+        style="font-size: 25px; display: flex; margin-right: 20px;"
+        class="settings-dropdown__icon"
+        slot="anchor"
+        :color="contextConfig.invertedColor ? $themes.gray : 'white'"
+      />
+    </a>
     
     <va-icon
       name="ion-md-search"
